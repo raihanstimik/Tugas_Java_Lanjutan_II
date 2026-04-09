@@ -12,7 +12,7 @@ public class TiketBisnis extends Tiket {
     public double hitungHarga() {
         return harga + 75000;
     }
-
+//tugas pertemuan 3
     @Override
     public String getJenisTiket() {
         return "Bisnis";
