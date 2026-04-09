@@ -12,7 +12,7 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
         TiketService service = new TiketService();
-
+//tugas java 2
         List<Tiket> daftarTiket = new ArrayList<>();
 
 // Tiket Ekonomi
