@@ -5,7 +5,7 @@ import payment.Pembayaran;
 
 public class TiketService {
 
-    // Method untuk tampilkan invoice
+    
     public void tampilkanInvoice(Tiket t, Pembayaran metode) {
 
         System.out.println("INVOICE TIKET KERETA API");
