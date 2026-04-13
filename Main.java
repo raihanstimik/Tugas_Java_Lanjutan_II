@@ -12,46 +12,47 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
         TiketService service = new TiketService();
-//tugas pertemuan 3
+
         List<Tiket> daftarTiket = new ArrayList<>();
 
-// Tiket Ekonomi
-daftarTiket.add(new TiketEkonomi(
-    "KA123", "Raihan", "Bandung - Jakarta", "2026-08-01, 08:00", 45000
-));
+        // Data tiket
+        daftarTiket.add(new TiketEkonomi(
+            "KA123", "Raihan", "Bandung - Jakarta", "2026-08-01, 08:00", 45000
+        ));
 
-// Tiket Bisnis
-daftarTiket.add(new TiketBisnis(
-    "KA125", "Raihan", "Bandung - Surabaya", "2026-08-03, 10:00", 100000
-));
+        daftarTiket.add(new TiketBisnis(
+            "KA125", "Raihan", "Bandung - Jakarta", "2026-08-01, 08:00", 100000
+        ));
 
-        // ===============================
-        // TAMPILKAN DAFTAR
-        // ===============================
+        // tampilkan daftar
         System.out.println("=== DAFTAR TIKET ===");
         for (int i = 0; i < daftarTiket.size(); i++) {
             Tiket t = daftarTiket.get(i);
-            System.out.println((i+1) + ". " + t.getTujuan() + " | " + t.getJenisTiket());
+            System.out.println((i + 1) + ". " + t.getTujuan() + " | " + t.getJenisTiket());
         }
 
-        // ===============================
-        // PILIH
-        // ===============================
-        System.out.print("Pilih tiket: ");
-        int pilih = input.nextInt();
+        try {
+            // input user
+            System.out.print("Pilih tiket: ");
+            int pilih = input.nextInt();
 
-        Tiket tiketDipilih = daftarTiket.get(pilih - 1);
+            // validasi pilihan
+            if (pilih < 1 || pilih > daftarTiket.size()) {
+                System.out.println("Pilihan tidak valid!");
+            } else {
+                Tiket tiketDipilih = daftarTiket.get(pilih - 1);
 
-        // ===============================
-        // PEMBAYARAN
-        // ===============================
-        Pembayaran bayar = new Transfer();
+                Pembayaran bayar = new Transfer();
 
-        // ===============================
-        // OUTPUT
-        // ===============================
-        service.tampilkanInvoice(tiketDipilih, bayar);
+                service.tampilkanInvoice(tiketDipilih, bayar);
+            }
 
-        input.close();
+        } catch (InputMismatchException e) {
+            System.out.println("Input harus berupa angka!");
+        } catch (Exception e) {
+            System.out.println("Terjadi kesalahan: " + e.getMessage());
+        } finally {
+            input.close();
+        }
     }
 }
